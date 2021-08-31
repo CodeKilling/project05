@@ -3,7 +3,7 @@ package project05;
 import java.util.Scanner;
 
 
-import jieun.StJieun;
+import jieun.*;
 import psy.DTOpsy;
 import khs.Jew_khs;
 
@@ -12,7 +12,7 @@ public class MainClass {
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		int input = 0;
-		StJieun stje = new StJieun();
+		
 		// StKHS hs = new StKHS(); // StDTO 클래스
 		Jew_khs hs = new Jew_khs();
 
@@ -34,7 +34,8 @@ public class MainClass {
 				hs.display();
 				break;
 			case 4:
-				stje.display();
+				JwJieun je = new JwJieun();
+				je.display();
 				break;
 			case 5:
 				DTOpsy psy = new DTOpsy();
