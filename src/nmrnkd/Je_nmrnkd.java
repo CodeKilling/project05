@@ -10,7 +10,11 @@ import project05.StDTO;
 
 /*
  	-문제점 1
- 	수정시 수정한 항목을 제외한 항목이 null값 되어서 새로 할당됨
+  	: 수정시 수정한 항목을 제외한 항목이 null or 0이 되고 0번째 인덱스로 새로 할당됨
+
+--> list.add 기능 특성상 원하는 하나의 값만 변경하는 것이 어렵다고 판단됨.
+--> 수정(추가) 후 기존 내용을 삭제하는 방식으로 수정할 예정
+--> list.remove로 삭제 후 list.add로 추가하는 방식으로 수정함. 오류 해결 완료
  	
 */
 
@@ -19,10 +23,12 @@ public class Je_nmrnkd {
 
 	Scanner input = new Scanner(System.in);
 	ArrayList<JewelryDTO> list = new ArrayList<JewelryDTO>();
+	
 	int cnt;
 	
 	public void display() 
 	{
+		JewelryDTO jDTO = new JewelryDTO();
 		boolean bool = true;
 
 		while(bool) {				
@@ -38,7 +44,7 @@ public class Je_nmrnkd {
 				case 2:
 					view(); break;
 				case 3:
-					modify(); break;
+					modify(jDTO); break;
 				case 4:
 					delete(); break;
 				case 5:
@@ -47,9 +53,9 @@ public class Je_nmrnkd {
 
 		}
 	}
-	
-	public void enroll(){
+	public JewelryDTO enroll(){
 		
+		JewelryDTO jdto01 = new JewelryDTO();
 		
 		String jName=null; int jAmount=0; String jPrice=null;
 		boolean check = true;
@@ -69,7 +75,7 @@ public class Je_nmrnkd {
 		}
 		
 		if(check)
-		{	JewelryDTO jdto01 = new JewelryDTO();
+		{	
 
 			System.out.println("등록할 수량을 입력하세요 : ");
 			jAmount = input.nextInt();
@@ -82,7 +88,7 @@ public class Je_nmrnkd {
 			
 			list.add(cnt, jdto01);
 			cnt++;//총 등록 개수 카운트
-		}
+		} return jdto01;
 		
 	}
 	public void view() {
@@ -98,8 +104,7 @@ public class Je_nmrnkd {
 			System.out.println("등록된 항목이 없습니다.");
 		}
 	}
-	public void modify() {
-		JewelryDTO jdto02 = new JewelryDTO();
+	public JewelryDTO modify(JewelryDTO jdto02) {
 		
 		String jName=null; int jAmount=0; String jPrice=null;
 		boolean check = true;
@@ -123,29 +128,43 @@ public class Je_nmrnkd {
 			
 			int sel = 0;
 			sel = input.nextInt();
-			
+
+			//문제 발생 부분			
 			switch(sel)
 			{
 			case 1:
 				System.out.println("수정할 수량을 입력하세요 : ");
 				jAmount = input.nextInt();
-				jdto02.setCount(jAmount);
-			
+//	수정 전			jdto02.setCount(jAmount);
+//	수정 전			list.add(index, jdto02);
+				jdto02.setName(	list.get(index).getName() );
+				jdto02.setCount( jAmount );
+				jdto02.setPrice( list.get(index).getPrice());						
+				
+				list.remove(index);
 				list.add(index, jdto02);
+				
+			
 				
 				break;
 			case 2:
 				System.out.println("수정할 가격을 입력하세요 : ");
 				jPrice = input.next();
-				jdto02.setPrice(jPrice);
-	
+//	수정 전			jdto02.setPrice(jPrice);
+//	수정 전			list.add(index, jdto02);
+				jdto02.setName(	list.get(index).getName() );
+				jdto02.setCount( list.get(index).getCount() );
+				jdto02.setPrice(jPrice);						
+				
+				list.remove(index);
 				list.add(index, jdto02);
+				
 				break;
 			}
 		}else {
 			System.out.println("해당 보석은 등록된 정보가 없습니다.");
 		}
-	
+		return jdto02;
 	}
 	public void delete() {
 		String jName=null; int jAmount=0; String jPrice=null;
