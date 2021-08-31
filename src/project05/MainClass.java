@@ -2,11 +2,13 @@ package project05;
 
 import java.util.Scanner;
 
+import jieun.StJieun;
+
 public class MainClass {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int input = 0;
-		
+		StJieun stje = new StJieun();
 		
 		while(true) {
 			System.out.println("1.박상진");
@@ -22,7 +24,9 @@ public class MainClass {
 			case 1: break;
 			case 2: break;
 			case 3: break;
-			case 4: break;
+			case 4:
+				stje.display();
+				break;
 			case 5: break;
 			case 6: System.exit(0); break;
 			default: System.out.println("only 1~6."); break;
