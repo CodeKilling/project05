@@ -3,6 +3,7 @@ package project05;
 import java.util.Scanner;
 
 import khs.Jew_khs;
+import nmrnkd.Je_nmrnkd;
 
 public class MainClass {
 	public static void main(String[] args) throws Exception {
@@ -11,7 +12,8 @@ public class MainClass {
 		
 		// StKHS hs = new StKHS(); // StDTO 클래스
 		Jew_khs hs = new Jew_khs();
-		
+		Je_nmrnkd je_n = new Je_nmrnkd();
+	
 		while(true) {
 			System.out.println("1.박상진");
 			System.out.println("2.김여진");
@@ -24,7 +26,9 @@ public class MainClass {
 			
 			switch(input) {
 			case 1: break;
-			case 2: break;
+			case 2: 
+				je_n.display();
+				break;
 			case 3: 
 				hs.display();
 				break;
