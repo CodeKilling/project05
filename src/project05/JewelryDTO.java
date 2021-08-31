@@ -1,8 +1,6 @@
 package project05;
 
-import java.io.Serializable;
-
-public class JewelryDTO implements Serializable{
+public class JewelryDTO {
 	private String name;
 	private int count;
 	private String price;
