@@ -6,7 +6,7 @@ import java.util.*;
 import project05.FPath;
 import project05.StDTO;
 
-public class STpsy implements FPath, Serializable{
+public class STpsy implements FPath{
 	
 	File filePath = new File(Path5);
 	

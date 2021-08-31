@@ -2,7 +2,7 @@ package project05;
 
 import java.io.Serializable;
 
-public class JewelryDTO implements FPath, Serializable{
+public class JewelryDTO implements Serializable{
 	private String name;
 	private int count;
 	private int price;
