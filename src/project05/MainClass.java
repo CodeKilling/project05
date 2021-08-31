@@ -2,13 +2,15 @@ package project05;
 
 import java.util.Scanner;
 
-import khs.StKHS;
+import khs.Jew_khs;
 
 public class MainClass {
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		int input = 0;
-		StKHS hs = new StKHS();
+		
+		// StKHS hs = new StKHS(); // StDTO 클래스
+		Jew_khs hs = new Jew_khs();
 		
 		while(true) {
 			System.out.println("1.박상진");
