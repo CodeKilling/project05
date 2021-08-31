@@ -6,13 +6,12 @@ import java.util.Scanner;
 import project05.JewelryDTO;
 import project05.StDTO;
 
+//contains /t or f
+
 /*
  	-문제점 1
- 	신규 등록시 이미 등록되ㄴ어 있던 정보들이 신규 등록 내용으로 바뀜
- 	-문제점 2
- 	수정시 리스트에 새로운 공간이 할당됨.
- 	-문제점 3
-	수정시 등록된 모든 정보가 수정됨 	
+ 	수정시 수정한 항목을 제외한 항목이 null값 되어서 새로 할당됨
+ 	
 */
 
 
@@ -20,8 +19,7 @@ public class Je_nmrnkd {
 
 	Scanner input = new Scanner(System.in);
 	ArrayList<JewelryDTO> list = new ArrayList<JewelryDTO>();
-		
-	JewelryDTO jdto = new JewelryDTO();
+	JewelryDTO jdto01 = new JewelryDTO();
 	int cnt;
 	
 	public void display() 
@@ -52,6 +50,7 @@ public class Je_nmrnkd {
 	}
 	
 	public void enroll() {
+		
 		String jName=null; int jAmount=0; String jPrice=null;
 		boolean check = true;
 		
@@ -70,17 +69,18 @@ public class Je_nmrnkd {
 		}
 		
 		if(check)
-		{	
+		{	//JewelryDTO jdto01 = new JewelryDTO();
+
 			System.out.println("등록할 수량을 입력하세요 : ");
 			jAmount = input.nextInt();
 			System.out.println("등록할 가격을 입력하세요 : ");
 			jPrice = input.next();
 			
-			jdto.setName(jName);
-			jdto.setCount(jAmount);
-			jdto.setPrice(jPrice);
+			jdto01.setName(jName);
+			jdto01.setCount(jAmount);
+			jdto01.setPrice(jPrice);
 			
-			list.add(cnt, jdto);
+			list.add(cnt, jdto01);
 			cnt++;
 		}
 		
@@ -99,12 +99,15 @@ public class Je_nmrnkd {
 		}
 	}
 	public void modify() {
+		JewelryDTO jdto02 = new JewelryDTO();
+		
 		String jName=null; int jAmount=0; String jPrice=null;
 		boolean check = true;
+		
 		System.out.println("수정할 보석의 이름을 입력하세요 : ");
 		jName =input.next();
-		check=false;
-		int index=0;
+		
+		check=false; int index=0;
 		for(int i=0 ; i<list.size() ; i++)
 		{
 			if(jName.equals(list.get(i).getName()))
@@ -112,6 +115,7 @@ public class Je_nmrnkd {
 				index=i; check=true; break;
 			}
 		}
+		
 		if(check)
 		{
 			System.out.println("수정할 항목을 선택하세요.");
@@ -125,14 +129,29 @@ public class Je_nmrnkd {
 			case 1:
 				System.out.println("수정할 수량을 입력하세요 : ");
 				jAmount = input.nextInt();
-				jdto.setCount(jAmount);
-				list.add(index, jdto);
+				jdto02.setCount(jAmount);
+				
+				jdto02.setName(jdto01.getName());
+				jdto02.setPrice(jdto01.getPrice());
+				
+				list.add(index, jdto02);
+				
+				System.out.println("--- 오류 확인용 ===");
+				System.out.println(list.get(index).getName());
+				System.out.println(list.get(index).getCount());
+				System.out.println(list.get(index).getPrice());
+				System.out.println("--- 오류 확인용 ===");
 				break;
 			case 2:
 				System.out.println("수정할 가격을 입력하세요 : ");
 				jPrice = input.next();
-				jdto.setPrice(jPrice);
-				list.add(index, jdto);
+				jdto02.setPrice(jPrice);
+				
+				jdto02.setName(jdto01.getName());
+				jdto02.setCount(jdto01.getCount());
+
+
+				list.add(index, jdto02);
 				break;
 			}
 		}else {
@@ -157,11 +176,11 @@ public class Je_nmrnkd {
 		if(check)
 		{
 			list.remove(index);
-			if(list.get(index)==null)
+			if(jName.equals(list.get(index).getName()))
 			{
-				System.out.println("삭제 완료");
-			}else {
 				System.out.println("삭제 되지 않음");
+			}else {
+				System.out.println("삭제 완료");
 			}
 		}else {
 			System.out.println("해당 보석은 등록되어 있지 않습니다.");
