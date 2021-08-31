@@ -19,7 +19,6 @@ public class Je_nmrnkd {
 
 	Scanner input = new Scanner(System.in);
 	ArrayList<JewelryDTO> list = new ArrayList<JewelryDTO>();
-	JewelryDTO jdto01 = new JewelryDTO();
 	int cnt;
 	
 	public void display() 
@@ -49,7 +48,8 @@ public class Je_nmrnkd {
 		}
 	}
 	
-	public void enroll() {
+	public void enroll(){
+		
 		
 		String jName=null; int jAmount=0; String jPrice=null;
 		boolean check = true;
@@ -63,13 +63,13 @@ public class Je_nmrnkd {
 			if((list.get(i).getName()).equals(jName))
 			{
 				System.out.println("이미 등록된 항목입니다.");
-				check = false;
+				check = false;//아래 if문 실행 방지
 				break;
 			}
 		}
 		
 		if(check)
-		{	//JewelryDTO jdto01 = new JewelryDTO();
+		{	JewelryDTO jdto01 = new JewelryDTO();
 
 			System.out.println("등록할 수량을 입력하세요 : ");
 			jAmount = input.nextInt();
@@ -81,7 +81,7 @@ public class Je_nmrnkd {
 			jdto01.setPrice(jPrice);
 			
 			list.add(cnt, jdto01);
-			cnt++;
+			cnt++;//총 등록 개수 카운트
 		}
 		
 	}
@@ -130,27 +130,15 @@ public class Je_nmrnkd {
 				System.out.println("수정할 수량을 입력하세요 : ");
 				jAmount = input.nextInt();
 				jdto02.setCount(jAmount);
-				
-				jdto02.setName(jdto01.getName());
-				jdto02.setPrice(jdto01.getPrice());
-				
+			
 				list.add(index, jdto02);
 				
-				System.out.println("--- 오류 확인용 ===");
-				System.out.println(list.get(index).getName());
-				System.out.println(list.get(index).getCount());
-				System.out.println(list.get(index).getPrice());
-				System.out.println("--- 오류 확인용 ===");
 				break;
 			case 2:
 				System.out.println("수정할 가격을 입력하세요 : ");
 				jPrice = input.next();
 				jdto02.setPrice(jPrice);
-				
-				jdto02.setName(jdto01.getName());
-				jdto02.setCount(jdto01.getCount());
-
-
+	
 				list.add(index, jdto02);
 				break;
 			}
