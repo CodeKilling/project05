@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class JewelryDTO implements Serializable{
 	private String name;
 	private int count;
-	private int price;
+	private String price;
 	public String getName() {
 		return name;
 	}
@@ -18,10 +18,10 @@ public class JewelryDTO implements Serializable{
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	
