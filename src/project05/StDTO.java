@@ -1,6 +1,8 @@
 package project05;
 
-public class StDTO {
+import java.io.Serializable;
+
+public class StDTO implements Serializable{
 	private String stNum;
 	private String name;
 	public String getStNum() {
